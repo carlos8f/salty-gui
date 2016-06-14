@@ -1,0 +1,12 @@
+{
+  "name": "salty-gui",
+  "version": "0.0.0",
+  "description": "",
+  "dependencies": {
+    "motley": "^2.2.0",
+    "motley-auth": "^2.0.1",
+    "motley-buffet": "^2.0.1",
+    "motley-templ": "^2.0.2",
+    "suppose": "git+https://github.com/carlos8f/node-suppose.git"
+  }
+}

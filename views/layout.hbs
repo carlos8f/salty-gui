@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{title}}</title>
+    <link href="/bootstrap-3.3.6-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    {{> partials/navbar}}
+    <div class="container-fluid">
+      <div class="row">
+        {{> partials/sidebar}}
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          {{{content}}}
+        </div>
+      </div>
+    </div>
+    <script src="/jquery.min.js"></script>
+    <script src="/bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
+  </body>
+</html>
