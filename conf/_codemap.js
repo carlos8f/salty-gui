@@ -17,7 +17,8 @@ module.exports = {
   // middleware overrides
   'middleware.session{}': {
     cookie: {
-      maxAge: 0 // short term cookie
+      maxAge: null,
+      expires: null // session cookie
     },
     key: 'salty' // change this to customize the session cookie name
   },
