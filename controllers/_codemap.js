@@ -9,6 +9,7 @@ module.exports = {
     require('./import'),
     require('./index'),
     require('./init'),
+    require('./login'),
     require('./ls'),
     require('./restore'),
     require('./save'),
