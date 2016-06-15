@@ -1,7 +1,4 @@
 var fs = require('fs')
-  , path = require('path')
-  , tmpDir = require('os').tmpDir()
-  , crypto = require('crypto')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
