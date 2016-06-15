@@ -1,4 +1,5 @@
-var walletDir = require('path').join(process.env.HOME, '.salty')
+var path = require('path')
+var walletDir = 
 
 module.exports = {
   // meta
@@ -10,8 +11,8 @@ module.exports = {
   '@site.title': 'Salty',
 
   'salty': {
-    wallet: walletDir,
-    bin: 'salty'
+    wallet: path.join(process.env.HOME, '.salty'),
+    bin: path.resolve(__dirname, '..', 'node_modules', '.bin', 'salty')
   },
 
   // middleware overrides

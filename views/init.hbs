@@ -1,1 +1,13 @@
-init.hbs
+<form class="form-init" method="post" action="">
+  <h2 class="form-init-heading">{{title}}</h2>
+  {{> partials/messages}}
+  <label for="inputName" class="sr-only">Your Name:</label>
+  <input type="text" id="inputName" class="form-control" placeholder="Alice" required name="name" value="{{post.name}}">
+  <label for="inputEmail" class="sr-only">Your Email:</label>
+  <input type="email" id="inputEmail" class="form-control" placeholder="alice@s8f.org" required name="email" value="{{post.email}}">
+  <label for="inputPassphrase" class="sr-only">Passphrase:</label>
+  <input type="password" id="inputPassphrase" class="form-control" placeholder="something secret" required name="passphrase" value="">
+  <label for="inputPassphrase2" class="sr-only">Confirm Passphrase:</label>
+  <input type="password" id="inputPassphrase2" class="form-control" placeholder="re-type something secret" required name="passphrase2" value="">
+  <button class="btn btn-lg btn-primary btn-block" type="submit">Create Wallet</button>
+</form>

@@ -7,13 +7,13 @@ var fs = require('fs')
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
   return get('controller')()
+    .add('/login', function (req, res, next) {
+      if (!res.vars.pubkey) return res.redirect('/init')
+      next()
+    })
     .post('/login', function (req, res, next) {
       if (req.user) return res.redirect('/')
-      var key = crypto.randomBytes(32)
-      assert.equal(req.sessionID.length, 32)
-      var challenge = crypto.createHmac('sha256', key).update(req.sessionID).digest()
-      var shasum = crypto.createHash('sha256').update(challenge).digest()
-      var tmpP = path.join(tmpDir, challenge.toString('hex'))
+      var challenge = crypto.randomBytes(32)
       fs.writeFileSync(tmpP, challenge)
       salty('sign', tmpP)
         .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.body.passphrase + '\n')
@@ -32,7 +32,7 @@ module.exports = function container (get, set) {
                   var stdout = Buffer.concat(chunks).toString('utf8')
                   // save passphrase in memory. never stored.
                   var user = {
-                    id: challenge.toString('hex'),
+                    id: '_',
                     passphrase: req.body.passphrase,
                     pubkey: stdout.trim()
                   }
