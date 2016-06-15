@@ -1,1 +1,26 @@
-ls.hbs
+<p class="pull-right"><a class="btn btn-primary" href="/import">Import key</a></p>
+
+<h2>Imported Keys</h2>
+
+<hr>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Pubkey</th>
+      <th>Name</th>
+      <th>Email</th>
+    </tr>
+  </thead>
+  <tbody>
+  {{#each recipients}}
+    <tr>
+      <td>{{type}}</td>
+      <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
+      <td>{{name}}</td>
+      <td>{{email}}</td>
+    </tr>
+  {{/each}}
+  </tbody>
+</table>

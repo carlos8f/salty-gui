@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "description": "",
   "dependencies": {
+    "micro-request": "^666.0.5",
     "motley": "^2.2.0",
     "motley-auth": "^2.0.1",
     "motley-buffet": "^2.0.1",
     "motley-templ": "^2.0.2",
+    "salty": "^3.1.3",
     "suppose": "git+https://github.com/carlos8f/node-suppose.git"
   }
 }
