@@ -6,6 +6,7 @@ var fs = require('fs')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
+    , doLogin = get('utils.doLogin')
   return get('controller')()
     .add('/login', function (req, res, next) {
       if (!res.vars.pubkey) return res.redirect('/init')
@@ -36,21 +37,11 @@ module.exports = function container (get, set) {
               var chunks = []
               salty('id')
                 .end(function (code) {
-                  var stdout = Buffer.concat(chunks).toString('utf8')
-                  // save passphrase in memory. never stored.
-                  var user = {
-                    id: '_',
-                    passphrase: req.body.passphrase,
-                    pubkey: stdout.trim()
+                  if (code) {
+                    res.flash('Login failed', 'danger')
+                    return next()
                   }
-                  get('db.users').save(user, function (err) {
-                    if (err) return next(err)
-                    req.login(user)
-                    res.redirect('/')
-                  })
-                })
-                .stdout.on('data', function (chunk) {
-                  chunks.push(chunk)
+                  doLogin(req.body.passphrase, req, res, next)
                 })
             })
         })

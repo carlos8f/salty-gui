@@ -76,3 +76,10 @@ body {
 #inputPassphrase2 {
   margin-bottom: 20px;
 }
+
+.form-init button {
+  margin-bottom: 10px;
+}
+label, button {
+  margin-top: 15px;
+}

@@ -1,1 +1,12 @@
-restore.hbs
+<h2>Restore from backup</h2>
+
+<form class="restore" action="" method="post">
+  {{> partials/messages}}
+  <div class="form-group">
+    <label for="input">Paste salty.pem:</label>
+    <textarea class="form-control" rows="5" name="input" id="input">{{post.input}}</textarea>
+    <label for="inputPassword">Passphrase:</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Passphrase" required name="passphrase">
+    <button type="submit" class="btn btn-primary">Restore</button>
+  </div>
+</form>

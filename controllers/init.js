@@ -2,6 +2,7 @@ var crypto = require('crypto')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
+    , doLogin = get('utils.doLogin')
   return get('controller')()
     .add('/init', function (req, res, next) {
       if (res.vars.pubkey) return res.redirect('/login')
@@ -18,16 +19,8 @@ module.exports = function container (get, set) {
             res.flash('Error creating wallet.', 'danger')
             return next()
           }
-          var user = {
-            id: '_',
-            passphrase: req.body.passphrase
-          }
-          get('db.users').save(user, function (err) {
-            if (err) return next(err)
-            req.login(user)
-            res.flash('Wallet created!', 'success')
-            res.redirect('/id')
-          })
+          res.flash('Wallet created!', 'success')
+          doLogin(req.body.passphrase, req, res, next)
         })
     })
     .add('/init', function (req, res, next) {
