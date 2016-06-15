@@ -5,7 +5,8 @@
 <form class="import" action="/import/complete" method="post">
   <div class="form-group">
     <label for="input">Pubkey:</label>
-    <input name="pubkey" type="text" class="form-control input-sm" name="input" value="{{pubkey.pubkey}}" readonly>
+    <input type="text" class="form-control input-sm" value="{{pubkey.pubkey}}" readonly>
+    <input name="pubkey" type="hidden" value="{{pubkey.pubkey}}">
   </div>
   <div class="form-group">
     <label for="input">Name:</label>

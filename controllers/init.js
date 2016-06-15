@@ -3,6 +3,10 @@ var crypto = require('crypto')
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
   return get('controller')()
+    .add('/init', function (req, res, next) {
+      if (res.vars.pubkey) return res.redirect('/login')
+      next()
+    })
     .post('/init', function (req, res, next) {
       var proc = salty('init')
         .when('Creating wallet...\nYour name: ').respond(req.body.name + '\n')

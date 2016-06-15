@@ -14,14 +14,21 @@ module.exports = function container (get, set) {
     .post('/login', function (req, res, next) {
       if (req.user) return res.redirect('/')
       var challenge = crypto.randomBytes(32)
+      var tmpP = path.join(tmpDir, challenge.toString('hex'))
       fs.writeFileSync(tmpP, challenge)
       salty('sign', tmpP)
         .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {
-          if (code) return next(new Error('Invalid login'))
+          if (code) {
+            res.flash('Login failed', 'danger')
+            return next()
+          }
           salty('verify', tmpP)
             .end(function (code) {
-              if (code) return next(new Error('Invalid login'))
+              if (code) {
+                res.flash('Login failed', 'danger')
+                return next()
+              }
               var buf = fs.readFileSync(tmpP)
               assert.deepEqual(buf, challenge)
               fs.unlinkSync(tmpP)

@@ -6,7 +6,7 @@ module.exports = function container (get, set) {
       .end(function (code) {
         if (code) return next()
         var stdout = Buffer.concat(chunks).toString('utf8')
-        res.vars.pubkey = stdout
+        res.vars.pubkey = stdout.trim()
         next()
       })
       .stdout.on('data', function (chunk) {
@@ -14,5 +14,3 @@ module.exports = function container (get, set) {
       })
   }
 }
-
-      
