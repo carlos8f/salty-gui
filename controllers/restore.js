@@ -10,16 +10,14 @@ module.exports = function container (get, set) {
     .post('/restore', function (req, res, next) {
       if (req.user) return res.redirect('/id')
       if (res.vars.pubkey) return res.redirect('/login')
-      if (!req.body.input) {
+      if (!req.files['salty.pem']) {
         res.flash('Bad input', 'danger')
         return next()
       }
-      var tmpP = path.join(tmpDir, crypto.randomBytes(32).toString('hex') + '.pem')
-      fs.writeFileSync(tmpP, req.body.input)
-      salty('restore', tmpP)
+      salty('restore', req.files['salty.pem'].path)
         .when('Enter passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {
-          fs.unlinkSync(tmpP)
+          fs.unlinkSync(req.files['salty.pem'].path)
           if (code) {
             res.flash('Restore error', 'danger')
             return next()

@@ -9,6 +9,9 @@ body {
   padding: 15px;
   margin: 0 auto;
 }
+.form-signin .form-signin-heading {
+  text-align: center;
+}
 .form-signin .form-signin-heading,
 .form-signin .checkbox {
   margin-bottom: 10px;
@@ -43,6 +46,9 @@ body {
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
+}
+.form-init .form-init-heading {
+  text-align: center;
 }
 .form-init .form-init-heading,
 .form-init .checkbox {
