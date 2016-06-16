@@ -1,4 +1,4 @@
-$('#encrypt-file').each(function () {
+$('#encrypt-upload').each(function () {
   // Get the template HTML and remove it from the doument
   //var Dropzone = require("enyo-dropzone");
   Dropzone.autoDiscover = false;
@@ -9,7 +9,7 @@ $('#encrypt-file').each(function () {
 
   var myParams = {}
   var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
-    url: "/encrypt/file/upload", // Set the url
+    url: "/encrypt/upload", // Set the url
     thumbnailWidth: 80,
     thumbnailHeight: 80,
     parallelUploads: 20,
@@ -20,12 +20,11 @@ $('#encrypt-file').each(function () {
     params: myParams
   });
 
-  $('#encrypt-file form input, #encrypt-file form select').change(function () {
-    var params = $('#encrypt-file form').serializeArray()
+  $('#encrypt-upload form input, #encrypt-upload form select').change(function () {
+    var params = $('#encrypt-upload form').serializeArray()
     $.each(params, function (idx, param) {
       myParams[param.name] = param.value
     })
-    console.log('myParams', myParams)
   });
 
   // Update the total progress bar

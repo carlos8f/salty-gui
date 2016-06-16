@@ -9,10 +9,11 @@ module.exports = function container (get, set) {
       loadRecipients(function (err, recipients) {
         if (err) return next(err)
         res.vars.recipients = recipients
+        res.vars.on_encrypt = true
         next()
       })
     })
-    .post('/encrypt/file/upload', function (req, res, next) {
+    .post('/encrypt/upload', function (req, res, next) {
       if (!req.files.file) {
         res.flash('File upload error', 'danger')
         return next()
@@ -67,18 +68,25 @@ module.exports = function container (get, set) {
         stdout += chunk
       })
     })
-    .get('/encrypt', function (req, res, next) {
-      if (!req.user) return res.redirect('/login')
-      res.redirect('/encrypt/file' + (req.query.to ? '?to=' + req.query.to : ''))
-    })
-    .get('/encrypt/file', function (req, res, next) {
+    .get('/encrypt/upload', function (req, res, next) {
       if (req.query.to) {
         res.vars.recipients.forEach(function (pubkey) {
           if (pubkey.pubkey === req.query.to) pubkey.selected = true
         })
         res.vars.to = req.query.to
       }
-      res.render('encrypt-file')
+      res.render('encrypt-upload')
+    })
+    .get('/encrypt/local', function (req, res, next) {
+      res.render('encrypt-local')
+    })
+    .get('/encrypt/text', function (req, res, next) {
+      res.vars.hide_ascii_options = true
+      res.render('encrypt-text')
+    })
+    .get('/encrypt', function (req, res, next) {
+      if (!req.user) return res.redirect('/login')
+      res.redirect('/encrypt/upload' + (req.query.to ? '?to=' + req.query.to : ''))
     })
     .on('error', function (err, req, res) {
       res.send(500, err.message)

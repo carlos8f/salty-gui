@@ -1,1 +1,27 @@
-encrypt-text.hbs
+<h2>Encrypt</h2>
+
+<ul class="nav nav-tabs">
+  <li><a href="/encrypt/upload?to={{to}}">Upload files</a></li>
+  <li class="active"><a href="">Copy/paste</a></li>
+  <li><a href="/encrypt/local?to={{to}}">Local file/dir</a></li>
+</ul>
+
+<div id="encrypt-local">
+  {{> partials/encrypt-form}}
+
+  <div id="actions" class="row">
+
+    <div class="col-lg-7">
+      <div class="form-group">
+        <label for="input">Enter text:</label>
+        <textarea id="input" class="form-control" name="input">{{post.input}}</textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Encrypt</button>
+      <hr>
+      <div class="form-group">
+        <label for="input">Output:</label>
+        <textarea id="output" class="form-control" name="output">{{post.output}}</textarea>
+      </div>
+    </div>
+  </div>
+</div>

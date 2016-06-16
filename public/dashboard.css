@@ -157,6 +157,6 @@ div.table .file-row:nth-child(odd) {
   display: inline-block;
 }
 
-.tab-content h2 {
+.main .nav {
   margin-bottom: 20px;
 }
