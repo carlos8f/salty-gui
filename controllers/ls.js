@@ -3,7 +3,7 @@ module.exports = function container (get, set) {
   return get('controller')()
     .get('/ls', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
-      res.on_ls = true
+      res.vars.on_ls = true
       loadRecipients(function (err, recipients) {
         if (err) return next(err)
         res.vars.recipients = recipients

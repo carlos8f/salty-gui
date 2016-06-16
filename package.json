@@ -9,7 +9,7 @@
     "motley-auth": "^2.0.1",
     "motley-buffet": "^2.0.1",
     "motley-templ": "^2.0.2",
-    "salty": "^3.1.5",
+    "salty": "^3.1.4",
     "send": "^0.14.1",
     "suppose": "git+https://github.com/carlos8f/node-suppose.git"
   }

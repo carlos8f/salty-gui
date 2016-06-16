@@ -45,7 +45,7 @@ module.exports = function container (get, set) {
     })
     .add('/import', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
-      res.on_import = true
+      res.vars.on_ls = true
       res.render('import')
     })
     .on('error', function (err, req, res) {

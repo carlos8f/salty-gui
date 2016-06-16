@@ -160,3 +160,7 @@ div.table .file-row:nth-child(odd) {
 .main .nav {
   margin-bottom: 20px;
 }
+
+.form-control[readonly] {
+  background-color: #fff;
+}
