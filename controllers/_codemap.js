@@ -4,6 +4,7 @@ module.exports = {
 
   'controllers[]': [
     require('./decrypt'),
+    require('./download'),
     require('./encrypt'),
     require('./id'),
     require('./import'),

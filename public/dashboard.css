@@ -121,10 +121,9 @@ div.table .file-row:nth-child(odd) {
   background: #f9f9f9;
 }
 
-
-
 /* The total progress gets shown by event listeners */
 #total-progress {
+  margin-top: 20px;
   opacity: 0;
   transition: opacity 0.3s linear;
 }
@@ -140,6 +139,14 @@ div.table .file-row:nth-child(odd) {
   display: none;
 }
 
+#previews .file-row .download {
+  display: none;
+}
+
+#previews .file-row.dz-success .download {
+  display: inline-block;
+}
+
 /* Hide the start and cancel buttons and show the delete button */
 
 #previews .file-row.dz-success .start,
@@ -147,7 +154,7 @@ div.table .file-row:nth-child(odd) {
   display: none;
 }
 #previews .file-row.dz-success .delete {
-  display: block;
+  display: inline-block;
 }
 
 .tab-content h2 {

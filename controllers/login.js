@@ -6,7 +6,6 @@ var fs = require('fs')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
-    , doLogin = get('utils.doLogin')
   return get('controller')()
     .add('/login', function (req, res, next) {
       if (!res.vars.pubkey) return res.redirect('/init')
@@ -27,22 +26,21 @@ module.exports = function container (get, set) {
           salty('verify', tmpP)
             .end(function (code) {
               if (code) {
+                try {
+                  fs.unlinkSync(tmpP)
+                }
+                catch (e) {}
                 res.flash('Login failed', 'danger')
                 return next()
               }
               var buf = fs.readFileSync(tmpP)
+              try {
+                fs.unlinkSync(tmpP)
+                fs.unlinkSync(tmpP + '.salty-sig')
+              }
+              catch (e) {}
               assert.deepEqual(buf, challenge)
-              fs.unlinkSync(tmpP)
-              fs.unlinkSync(tmpP + '.salty-sig')
-              var chunks = []
-              salty('id')
-                .end(function (code) {
-                  if (code) {
-                    res.flash('Login failed', 'danger')
-                    return next()
-                  }
-                  doLogin(req.body.passphrase, req, res, next)
-                })
+              get('db.users').login(req.body.passphrase, req, res, next)
             })
         })
     })

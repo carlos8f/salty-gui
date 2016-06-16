@@ -1,5 +1,7 @@
 var fs = require('fs')
   , send = require('send')
+  , crypto = require('crypto')
+  , bs58 = require('bs58')
 
 module.exports = function container (get, set) {
   return get('db.createCollection')('tokens', {
@@ -20,10 +22,26 @@ module.exports = function container (get, set) {
       cb(null, obj)
     },
     methods: {
+      make: function makeToken (p, cb) {
+        var filename = crypto.randomBytes(4).toString('hex') + (p.match(/\.pem$/) ? '.pem' : '.salty')
+        var token = {
+          id: bs58.encode(crypto.randomBytes(32)),
+          path: p,
+          headers: {
+            'Content-Type': p.match(/\.pem$/) ? 'text/plain' : 'application/octet-stream',
+            'Content-Disposition': 'attachment; filename="' + filename + '"'
+          }
+        }
+        token.url = '/download?token=' + token.id
+        this.save(token, cb)
+      },
       use: function (token, req, res, next) {
         var coll = this
-        coll.destroy(token, function (err) {
+        coll.destroy(token.id, function (err) {
           if (err) return next(err)
+          Object.keys(token.headers).forEach(function (k) {
+            res.setHeader(k, token.headers[k])
+          })
           var fileStream = send(req, token.path)
           res.once('error', function () {
             try {

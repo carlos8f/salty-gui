@@ -14,21 +14,15 @@ $('#encrypt-file').each(function () {
     thumbnailHeight: 80,
     parallelUploads: 20,
     previewTemplate: previewTemplate,
-    autoQueue: false, // Make sure the files aren't queued until manually added
+    autoQueue: true, // Make sure the files aren't queued until manually added
     previewsContainer: "#previews", // Define the container to display the previews
     clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
     params: myParams
   });
 
-  $('#encrypt-file form').on('submit', function () {
-    var params = $(this).serializeObject()
-    console.log('params', params)
-    //myParams = this.serialize()
-  })
-
   myDropzone.on("addedfile", function(file) {
-    // Hookup the start button
-    file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file); };
+    var params = $('#encrypt-file form').serializeArray()
+    console.log('params', params)
   });
 
   // Update the total progress bar
@@ -40,24 +34,21 @@ $('#encrypt-file').each(function () {
     // Show the total progress bar when upload starts
     document.querySelector("#total-progress").style.opacity = "1";
     // And disable the start button
-    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+    $('#actions .cancel').show()
   });
 
   // Hide the total progress bar when nothing's uploading anymore
   myDropzone.on("queuecomplete", function(progress) {
     document.querySelector("#total-progress").style.opacity = "0";
+    $('#actions .cancel').hide()
   });
 
-  myDropzone.on("complete", function(file) {
-    console.error('file', file)
+  $('#actions .cancel').hide()
+
+  myDropzone.on("success", function(file, resp) {
+    $(file.previewElement).find('.download').attr('href', resp.url)
   });
 
-  // Setup the buttons for all transfers
-  // The "add files" button doesn't need to be setup because the config
-  // `clickable` has already been specified.
-  document.querySelector("#actions .start").onclick = function() {
-    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
-  };
   document.querySelector("#actions .cancel").onclick = function() {
     myDropzone.removeAllFiles(true);
   };
