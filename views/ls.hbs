@@ -13,13 +13,17 @@
     </tr>
   </thead>
   <tbody>
-  {{#each recipients}}
-    <tr>
-      <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
-      <td>{{name}}</td>
-      <td><a href="mailto:{{email}}">{{email}}</a></td>
-      <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}">Encrypt...</a></td>
-    </tr>
-  {{/each}}
+  {{#if recipients}}
+    {{#each recipients}}
+      <tr>
+        <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
+        <td>{{name}}</td>
+        <td><a href="mailto:{{email}}">{{email}}</a></td>
+        <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}">Encrypt...</a></td>
+      </tr>
+    {{/each}}
+  {{else}}
+    <tr><td colspan="4">No keys imported.</td></tr>
+  {{/if}}
   </tbody>
 </table>

@@ -6,7 +6,7 @@ module.exports = function container (get, set) {
       res.vars.on_ls = true
       loadRecipients(function (err, recipients) {
         if (err) return next(err)
-        res.vars.recipients = recipients
+        res.vars.recipients = recipients.length ? recipients : null
         res.render('ls')
       })
     })
