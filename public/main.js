@@ -49,6 +49,7 @@ $('#encrypt-file').each(function () {
   $('#actions .cancel').hide()
 
   myDropzone.on("success", function(file, resp) {
+    if (!resp.path) $(file.previewElement).find('.download').html('<i class="glyphicon glyphicon-globe"></i><span>View Gist</span>')
     $(file.previewElement).find('.download').attr('href', resp.url).click(function () {
       myDropzone.removeFile(file)
     })

@@ -45,12 +45,17 @@ module.exports = function container (get, set) {
           })
         }
         if (!outFile) {
-          // write to file
-          outFile = req.files.file.path + '.salty.pem'
-          fs.writeFile(outFile, stdout, function (err) {
-            if (err) return next(err)
-            withOutfile(outFile)
-          })
+          if (req.body.gist) {
+            withOutfile(stdout.trim())
+          }
+          else {
+            // write to file
+            outFile = req.files.file.path + '.salty.pem'
+            fs.writeFile(outFile, stdout, function (err) {
+              if (err) return next(err)
+              withOutfile(outFile)
+            })
+          }
         }
         else withOutfile(outFile)
       })
@@ -64,7 +69,7 @@ module.exports = function container (get, set) {
     })
     .get('/encrypt', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
-      res.redirect('/encrypt/file?to=' + req.query.to)
+      res.redirect('/encrypt/file' + (req.query.to ? '?to=' + req.query.to : ''))
     })
     .get('/encrypt/file', function (req, res, next) {
       if (req.query.to) {

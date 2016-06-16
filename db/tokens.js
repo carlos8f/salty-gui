@@ -23,6 +23,14 @@ module.exports = function container (get, set) {
     },
     methods: {
       make: function makeToken (p, cb) {
+        if (p.indexOf('https') === 0) {
+          return cb(null, {
+            id: '_',
+            path: null,
+            headers: {},
+            url: p
+          })
+        }
         var filename = crypto.randomBytes(4).toString('hex') + (p.match(/\.pem$/) ? '.pem' : '.salty')
         var token = {
           id: bs58.encode(crypto.randomBytes(32)),
