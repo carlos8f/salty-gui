@@ -15,7 +15,7 @@
   <tbody>
   {{#each recipients}}
     <tr>
-      <td><input type="text" class="form-control" value="{{type}} {{pubkey}}" onclick="this.select()" readonly></td>
+      <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
       <td>{{name}}</td>
       <td><a href="mailto:{{email}}">{{email}}</a></td>
       <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}">Encrypt...</a></td>

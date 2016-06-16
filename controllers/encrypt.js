@@ -34,6 +34,7 @@ module.exports = function container (get, set) {
       }
       var proc = e.end(function (code) {
         fs.unlinkSync(req.files.file.path)
+        console.error('stderr', stderr, stdout)
         if (code) {
           return next(new Error('Encryption error'))
         }
@@ -63,12 +64,18 @@ module.exports = function container (get, set) {
     })
     .get('/encrypt', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
-      res.redirect('/encrypt/file')
+      res.redirect('/encrypt/file?to=' + req.query.to)
     })
     .get('/encrypt/file', function (req, res, next) {
+      if (req.query.to) {
+        res.vars.recipients.forEach(function (pubkey) {
+          if (pubkey.pubkey === req.query.to) pubkey.selected = true
+        })
+        res.vars.to = req.query.to
+      }
       res.render('encrypt-file')
     })
     .on('error', function (err, req, res) {
-      res.json(500, {err: err.message})
+      res.send(500, err.message)
     })
 }

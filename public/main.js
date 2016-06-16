@@ -20,9 +20,12 @@ $('#encrypt-file').each(function () {
     params: myParams
   });
 
-  myDropzone.on("addedfile", function(file) {
+  $('#encrypt-file form input, #encrypt-file form select').change(function () {
     var params = $('#encrypt-file form').serializeArray()
-    console.log('params', params)
+    $.each(params, function (idx, param) {
+      myParams[param.name] = param.value
+    })
+    console.log('myParams', myParams)
   });
 
   // Update the total progress bar
