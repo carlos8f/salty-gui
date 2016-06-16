@@ -4,6 +4,7 @@ var fs = require('fs')
 module.exports = function container (get, set) {
   var loadRecipients = get('utils.loadRecipients')
     , salty = get('utils.salty')
+    , makeToken = get('utils.makeToken')
   return get('controller')()
     .add('/encrypt/*', '/encrypt/*/*', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
