@@ -46,7 +46,9 @@ $('#encrypt-file').each(function () {
   $('#actions .cancel').hide()
 
   myDropzone.on("success", function(file, resp) {
-    $(file.previewElement).find('.download').attr('href', resp.url)
+    $(file.previewElement).find('.download').attr('href', resp.url).click(function () {
+      myDropzone.removeFile(file)
+    })
   });
 
   document.querySelector("#actions .cancel").onclick = function() {
