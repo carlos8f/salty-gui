@@ -7,7 +7,6 @@
 <table class="table table-bordered">
   <thead>
     <tr>
-      <th>Type</th>
       <th>Pubkey</th>
       <th>Name</th>
       <th>Email</th>
@@ -16,10 +15,10 @@
   <tbody>
   {{#each recipients}}
     <tr>
-      <td>{{type}}</td>
-      <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
+      <td><input type="text" class="form-control" value="{{type}} {{pubkey}}" onclick="this.select()" readonly></td>
       <td>{{name}}</td>
-      <td>{{email}}</td>
+      <td><a href="mailto:{{email}}">{{email}}</a></td>
+      <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}">Encrypt...</a></td>
     </tr>
   {{/each}}
   </tbody>

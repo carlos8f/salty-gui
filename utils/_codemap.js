@@ -3,5 +3,6 @@ module.exports = {
   _folder: 'utils',
 
   'salty': require('./salty'),
-  'doLogin': require('./doLogin')
+  'doLogin': require('./doLogin'),
+  'loadRecipients': require('./loadRecipients')
 }
