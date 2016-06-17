@@ -22,7 +22,11 @@ module.exports = function container (get, set) {
       cb(null, obj)
     },
     methods: {
-      make: function makeToken (p, cb) {
+      make: function (p, filename, cb) {
+        if (typeof filename === 'function') {
+          cb = filename
+          filename = null
+        }
         if (p.indexOf('https') === 0) {
           return cb(null, {
             id: '_',
@@ -31,7 +35,9 @@ module.exports = function container (get, set) {
             url: p
           })
         }
-        var filename = crypto.randomBytes(4).toString('hex') + (p.match(/\.pem$/) ? '.pem' : '.salty')
+        if (!filename) {
+          filename = crypto.randomBytes(4).toString('hex') + (p.match(/\.pem$/) ? '.pem' : '.salty')
+        }
         var token = {
           id: bs58.encode(crypto.randomBytes(32)),
           path: p,

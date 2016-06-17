@@ -45,6 +45,8 @@ module.exports = function container (get, set) {
       var proc = e.end(function (code) {
         fs.unlinkSync(req.files.file.path)
         if (code) {
+          console.error('stderr', stderr)
+          console.error('stdout', stdout)
           return next(new Error('Encryption error'))
         }
         function withOutfile (outFile) {

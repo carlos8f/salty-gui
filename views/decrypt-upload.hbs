@@ -1,42 +1,12 @@
-<h2>Encrypt</h2>
+<h2>Decrypt</h2>
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#">Upload files</a></li>
-  <li><a href="/encrypt/text?to={{to}}">Copy/paste</a></li>
-  <li><a href="/encrypt/local">Local file/dir</a></li>
+  <li><a href="/decrypt/text?to={{to}}">Copy/paste</a></li>
+  <li><a href="/decrypt/local">Local file/dir</a></li>
 </ul>
 
-<div id="encrypt-upload">
-  <form>
-    <div class="form-group">
-      <label for="recipient">Recipient</label>
-      <select name="to" class="form-control">
-        <option value="{{pubkey.pubkey}}">(Self)</option>
-        {{#each recipients}}
-        <option value="{{pubkey}}"{{#if selected}} selected{{/if}}>{{name}} &lt;{{email}}&gt;</option>
-        {{/each}}
-      </select>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="sign" value="1">
-        Include signature
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="armor" value="1">
-        ASCII armor
-      </label>
-    </div>
-    <div class="checkbox">
-      <label>
-        <input type="checkbox" name="gist" value="1">
-        Upload gist
-      </label>
-    </div>
-  </form>
-
+<div id="decrypt-upload">
   <div id="actions" class="row">
 
     <div class="col-lg-7">
