@@ -38,10 +38,11 @@ module.exports = function container (get, set) {
         .end(function (code) {
           if (code) {
             res.flash('Import error', 'danger')
-            return next()
+            return res.redirect('/import')
           }
           res.redirect('/ls')
         })
+        .stdout.pipe(process.stdout)
     })
     .add('/import', function (req, res, next) {
       if (!req.user) return res.redirect('/login')

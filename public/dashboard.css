@@ -164,3 +164,7 @@ div.table .file-row:nth-child(odd) {
 .form-control[readonly] {
   background-color: #fff;
 }
+
+textarea {
+  font-family: monospace;
+}

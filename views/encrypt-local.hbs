@@ -7,16 +7,43 @@
 </ul>
 
 <div id="encrypt-local">
-  {{> partials/encrypt-form}}
-
-  <div id="actions" class="row">
-
-    <div class="col-lg-7">
-      <div class="form-group">
-        <label for="input">File/dir path:</label>
-        <input id="input" type="text" class="form-control input-sm" name="input" placeholder="/path/to/file" value="{{post.input}}">
-      </div>
-      <button type="submit" class="btn btn-primary">Encrypt</button>
+  <form method="post" action="">
+    <div class="form-group">
+      <label for="recipient">Recipient</label>
+      <select name="to" class="form-control">
+        <option value="">(Self)</option>
+        {{#each recipients}}
+        <option value="{{pubkey}}"{{#if selected}} selected{{/if}}>{{name}} &lt;{{email}}&gt;</option>
+        {{/each}}
+      </select>
     </div>
-  </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sign" value="1">
+        Include signature
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="armor" value="1">
+        ASCII armor
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="gist" value="1">
+        Upload gist
+      </label>
+    </div>
+
+    <div id="actions" class="row">
+      <div class="col-lg-7">
+        <div class="form-group">
+          <label for="input">File/dir path:</label>
+          <input id="input" type="text" class="form-control input-sm" name="input" placeholder="/path/to/file" value="{{post.input}}">
+        </div>
+        <button type="submit" class="btn btn-primary">Encrypt</button>
+      </div>
+    </div>
+  </form>
 </div>
