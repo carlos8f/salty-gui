@@ -120,10 +120,10 @@ module.exports = function container (get, set) {
       })
     })
     .get('/decrypt/local', function (req, res, next) {
-      res.render('encrypt-local')
+      res.render('decrypt-local')
     })
     .post('/decrypt/text', function (req, res, next) {
-      var args = ['encrypt']
+      var args = ['decrypt']
       if (req.body.to) args.push('-t', req.body.to)
       if (req.body.sign) args.push('-s')
       args.push('-a')

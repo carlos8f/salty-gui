@@ -1,18 +1,18 @@
 <div class="col-sm-3 col-md-2 sidebar">
-  <h3>Wallet</h3>
+  <h3><i class="glyphicon glyphicon-hdd"></i> Wallet</h3>
   <ul class="nav nav-sidebar">
-    <li{{#if on_id}} class="active"{{/if}}><a href="/id">My Salty ID</a></li>
-    <li{{#if on_ls}} class="active"{{/if}}><a href="/ls">Imported Keys</a></li>
-    <li{{#if on_save}} class="active"{{/if}}><a href="/save">Export Wallet</a></li>
+    <li{{#if on_id}} class="active"{{/if}}><a href="/id"><i class="glyphicon glyphicon-user"></i> My Salty ID</a></li>
+    <li{{#if on_ls}} class="active"{{/if}}><a href="/ls"><i class="glyphicon glyphicon-globe"></i> Imported Keys</a></li>
+    <li{{#if on_save}} class="active"{{/if}}><a href="/save"><i class="glyphicon glyphicon-briefcase"></i> Export Wallet</a></li>
   </ul>
-  <h3>Confidentiality</h3>
+  <h3><i class="glyphicon glyphicon-eye-close"></i> Confidentiality</h3>
   <ul class="nav nav-sidebar">
-    <li{{#if on_encrypt}} class="active"{{/if}}><a href="/encrypt">Encrypt</a></li>
-    <li{{#if on_decrypt}} class="active"{{/if}}><a href="/decrypt">Decrypt</a></li>
+    <li{{#if on_encrypt}} class="active"{{/if}}><a href="/encrypt"><i class="glyphicon glyphicon-lock"></i> Encrypt</a></li>
+    <li{{#if on_decrypt}} class="active"{{/if}}><a href="/decrypt"><i class="glyphicon glyphicon-eye-open"></i> Decrypt</a></li>
   </ul>
-  <h3>Authentication</h3>
+  <h3><i class="glyphicon glyphicon-ok"></i> Authentication</h3>
   <ul class="nav nav-sidebar">
-    <li{{#if on_sign}} class="active"{{/if}}><a href="/sign">Sign</a></li>
-    <li{{#if on_verify}} class="active"{{/if}}><a href="/verify">Verify</a></li>
+    <li{{#if on_sign}} class="active"{{/if}}><a href="/sign"><i class="glyphicon glyphicon-certificate"></i> Sign</a></li>
+    <li{{#if on_verify}} class="active"{{/if}}><a href="/verify"><i class="glyphicon glyphicon-ok"></i> Verify</a></li>
   </ul>
 </div>

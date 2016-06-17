@@ -1,6 +1,6 @@
-<p class="pull-right"><a class="btn btn-primary" href="/import">Import key</a></p>
+<p class="pull-right"><a class="btn btn-primary" href="/import"><i class="glyphicon glyphicon-plus-sign"></i> Import key</a></p>
 
-<h2>Imported Keys</h2>
+<h2><i class="glyphicon glyphicon-globe"></i> Imported Keys</h2>
 
 <hr>
 
@@ -19,7 +19,7 @@
         <td><input type="text" class="form-control" value="{{pubkey}}" onclick="this.select()" readonly></td>
         <td>{{name}}</td>
         <td><a href="mailto:{{email}}">{{email}}</a></td>
-        <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}">Encrypt...</a></td>
+        <td><a class="btn btn-default btn-sm" href="/encrypt?to={{pubkey}}"><i class="glyphicon glyphicon-lock"></i> Encrypt...</a></td>
       </tr>
     {{/each}}
   {{else}}

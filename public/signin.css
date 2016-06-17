@@ -1,7 +1,7 @@
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background: #eee url(/bg.png) center top no-repeat;
 }
 
 .form-signin {
@@ -49,6 +49,9 @@ body {
 }
 .form-init .form-init-heading {
   text-align: center;
+  margin: 0;
+  padding: 10px;
+  color: black;
 }
 .form-init .form-init-heading,
 .form-init .checkbox {
@@ -88,4 +91,17 @@ body {
 }
 label, button {
   margin-top: 15px;
+}
+
+input.form-control {
+  background-color: rgba(255,255,255,0);
+}
+
+.salty-logo {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  background: url(/salt-shaker-inverse.png) center no-repeat;
+  margin-bottom: -5px;
+  margin-right: -5px;
 }

@@ -1,15 +1,15 @@
-<h2>Encrypt</h2>
+<h2><i class="glyphicon glyphicon-lock"></i> Encrypt</h2>
 
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#">Upload files</a></li>
-  <li><a href="/encrypt/text?to={{to}}">Copy/paste</a></li>
-  <li><a href="/encrypt/local">Local file/dir</a></li>
+<ul class="nav nav-pills">
+  <li class="active"><a href="#"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
+  <li><a href="/encrypt/text?to={{to}}"><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
+  <li><a href="/encrypt/local"><i class="glyphicon glyphicon-open-file"></i> Local file/dir</a></li>
 </ul>
 
 <div id="encrypt-upload">
   <form>
     <div class="form-group">
-      <label for="recipient">Recipient</label>
+      <label for="recipient"><i class="glyphicon glyphicon-user"></i> Recipient</label>
       <select name="to" class="form-control">
         <option value="{{pubkey.pubkey}}">(Self)</option>
         {{#each recipients}}
@@ -20,19 +20,19 @@
     <div class="checkbox">
       <label>
         <input type="checkbox" name="sign" value="1">
-        Include signature
+        <i class="glyphicon glyphicon-certificate"></i> Include signature
       </label>
     </div>
     <div class="checkbox">
       <label>
         <input type="checkbox" name="armor" value="1">
-        ASCII armor
+        <i class="glyphicon glyphicon-text-background"></i> ASCII armor
       </label>
     </div>
     <div class="checkbox">
       <label>
         <input type="checkbox" name="gist" value="1">
-        Upload gist
+        <i class="glyphicon glyphicon-cloud-upload"></i> Upload gist
       </label>
     </div>
   </form>
@@ -42,7 +42,7 @@
     <div class="col-lg-7">
       <span class="btn btn-success fileinput-button">
           <i class="glyphicon glyphicon-plus"></i>
-          <span>Upload files...</span>
+          <span>Select files...</span>
       </span>
       <button type="reset" class="btn btn-warning cancel">
           <i class="glyphicon glyphicon-ban-circle"></i>

@@ -1,15 +1,15 @@
-<h2>Encrypt</h2>
+<h2><i class="glyphicon glyphicon-lock"></i> Encrypt</h2>
 
-<ul class="nav nav-tabs">
-  <li><a href="/encrypt/upload?to={{to}}">Upload files</a></li>
-  <li class="active"><a href="">Copy/paste</a></li>
-  <li><a href="/encrypt/local?to={{to}}">Local file/dir</a></li>
+<ul class="nav nav-pills">
+  <li><a href="/encrypt/upload?to={{to}}"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
+  <li class="active"><a href=""><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
+  <li><a href="/encrypt/local?to={{to}}"><i class="glyphicon glyphicon-open-file"></i> Local file/dir</a></li>
 </ul>
 
 <div id="encrypt-text">
   <form method="post" action="">
     <div class="form-group">
-      <label for="recipient">Recipient</label>
+      <label for="recipient"><i class="glyphicon glyphicon-user"></i> Recipient</label>
       <select name="to" class="form-control">
         <option value="{{pubkey.pubkey}}">(Self)</option>
         {{#each recipients}}
@@ -20,21 +20,21 @@
     <div class="checkbox">
       <label>
         <input type="checkbox" name="sign" value="1"{{#if post.sign}} checked{{/if}}>
-        Include signature
+        <i class="glyphicon glyphicon-certificate"></i> Include signature
       </label>
     </div>
 
     <div id="actions" class="row">
       <div class="col-lg-9">
         <div class="form-group">
-          <label for="input">Enter text:</label>
+          <label for="input"><i class="glyphicon glyphicon-pencil"></i> Enter text:</label>
           <textarea id="input" class="form-control" name="input" rows="8">{{post.input}}</textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Encrypt</button>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Encrypt</button>
         {{#if output}}
         <hr>
         <div class="form-group">
-          <label for="input">Output:</label>
+          <label for="input"><i class="glyphicon glyphicon-check"></i> Output:</label>
           <textarea id="output" class="form-control" name="output" rows="8" readonly onclick="this.select()">{{output}}</textarea>
         </div>
         {{/if}}
