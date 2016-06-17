@@ -1,0 +1,16 @@
+<div class="headers form-group">
+  <label for="headers"><i class="glyphicon glyphicon-check"></i> Headers:</label>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each headers}}
+        <tr><td><code>{{@key}}</code></td><td><code>{{this}}</code></tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

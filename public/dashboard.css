@@ -142,13 +142,20 @@ table {
 
 .navbar-inverse {
   background: black;
+  position: relative;
+  height: 70px;
+  color: #888;
+  font-size: 0.9em;
+  padding-top: 5px;
 }
 
 .navbar-inverse .navbar-brand {
   float: none;
   display: block;
+  position: absolute;
+  top: 0;
+  left: 20px;
   color: white;
-  height: auto;
   font-size: 26px;
   line-height: 1;
   letter-spacing: 0.05em;

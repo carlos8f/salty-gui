@@ -78,7 +78,7 @@ module.exports = function container (get, set) {
         stdout += chunk
       })
     })
-    .get('/encrypt/upload', function (req, res, next) {
+    .add('/encrypt/upload', function (req, res, next) {
       res.render('encrypt-upload')
     })
     .post('/encrypt/local', function (req, res, next) {
@@ -136,7 +136,7 @@ module.exports = function container (get, set) {
         stdout += chunk
       })
     })
-    .get('/encrypt/local', function (req, res, next) {
+    .add('/encrypt/local', function (req, res, next) {
       res.render('encrypt-local')
     })
     .post('/encrypt/text', function (req, res, next) {
@@ -144,7 +144,7 @@ module.exports = function container (get, set) {
       if (req.body.to) args.push('-t', req.body.to)
       if (req.body.sign) args.push('-s')
       args.push('-a')
-      var inFile = path.join(tmpDir, crypto.randomBytes(32).toString())
+      var inFile = path.join(tmpDir, crypto.randomBytes(32).toString('hex'))
       fs.writeFile(inFile, req.body.input, {mode: parseInt('0600', 8)}, function (err) {
         if (err) return next(err)
         args.push(inFile)
@@ -169,7 +169,7 @@ module.exports = function container (get, set) {
         })
       })
     })
-    .get('/encrypt/text', function (req, res, next) {
+    .add('/encrypt/text', function (req, res, next) {
       res.render('encrypt-text')
     })
     .get('/encrypt', function (req, res, next) {

@@ -1,1 +1,29 @@
-decrypt-text.hbs
+<h2><i class="glyphicon glyphicon-eye-open"></i> Decrypt</h2>
+
+<ul class="nav nav-pills">
+  <li><a href="/decrypt/upload"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
+  <li class="active"><a href=""><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
+  <li><a href="/decrypt/local"><i class="glyphicon glyphicon-open-file"></i> Local file/dir</a></li>
+</ul>
+
+<div id="encrypt-text">
+  <form method="post" action="">
+    <div id="actions" class="row">
+      <div class="col-lg-9">
+        <div class="form-group">
+          <label for="input"><i class="glyphicon glyphicon-pencil"></i> Paste ASCII Armor:</label>
+          <textarea id="input" class="form-control" name="input" rows="8">{{post.input}}</textarea>
+        </div>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Decrypt</button>
+        {{#if output}}
+        <hr>
+        {{> partials/headers}}
+        <div class="form-group">
+          <label for="output"><i class="glyphicon glyphicon-check"></i> Output:</label>
+          <textarea id="output" class="form-control" name="output" rows="8" readonly onclick="this.select()">{{output}}</textarea>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </form>
+</div>

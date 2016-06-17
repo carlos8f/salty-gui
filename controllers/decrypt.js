@@ -61,7 +61,7 @@ module.exports = function container (get, set) {
         chunks.push(chunk)
       })
     })
-    .get('/decrypt/upload', function (req, res, next) {
+    .add('/decrypt/upload', function (req, res, next) {
       res.render('decrypt-upload')
     })
     .post('/decrypt/local', function (req, res, next) {
@@ -119,30 +119,35 @@ module.exports = function container (get, set) {
         stdout += chunk
       })
     })
-    .get('/decrypt/local', function (req, res, next) {
+    .add('/decrypt/local', function (req, res, next) {
       res.render('decrypt-local')
     })
     .post('/decrypt/text', function (req, res, next) {
       var args = ['decrypt']
-      if (req.body.to) args.push('-t', req.body.to)
-      if (req.body.sign) args.push('-s')
       args.push('-a')
-      var inFile = path.join(tmpDir, crypto.randomBytes(32).toString())
+      var inFile = path.join(tmpDir, crypto.randomBytes(32).toString('hex'))
       fs.writeFile(inFile, req.body.input, {mode: parseInt('0600', 8)}, function (err) {
         if (err) return next(err)
         args.push(inFile)
-        var e = salty.apply(null, args)
-        if (req.body.sign) {
-          e.when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
-        }
-        var proc = e.end(function (code) {
-          fs.unlinkSync(inFile)
-          if (code) {
-            return next(new Error('Encryption error'))
-          }
-          res.vars.output = stdout.trim()
-          res.render('encrypt-text')
-        })
+        var proc = salty.apply(null, args)
+          .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
+          .end(function (code) {
+            fs.unlinkSync(inFile)
+            if (code) {
+              res.flash('Decryption error', 'danger')
+              return next()
+            }
+            res.vars.output = stdout.trim()
+            var headers = {}
+            stderr.split('\n\n')[1].trim().split('\n').forEach(function (line) {
+              var l = line.split(/:\s*/)
+              if (l.length === 2) {
+                headers[l[0]] = l[1]
+              }
+            })
+            res.vars.headers = headers
+            res.render('decrypt-text')
+          })
         var stderr = '', stdout = ''
         proc.stderr.on('data', function (chunk) {
           stderr += chunk
@@ -152,7 +157,7 @@ module.exports = function container (get, set) {
         })
       })
     })
-    .get('/decrypt/text', function (req, res, next) {
+    .add('/decrypt/text', function (req, res, next) {
       res.render('decrypt-text')
     })
     .get('/decrypt', function (req, res, next) {

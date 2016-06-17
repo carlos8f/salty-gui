@@ -1,1 +1,13 @@
-save.hbs
+<h2><i class="glyphicon glyphicon-briefcase"></i> Export Wallet</h2>
+
+<form action="" method="post">
+  <div class="form-group">
+    <label for="inputPassphrase">Create passphrase:</label>
+    <input type="password" id="inputPassphrase" class="form-control" required name="passphrase" value="">
+  </div>
+  <div class="form-group">
+    <label for="inputPassphrase2">Confirm passphrase:</label>
+    <input type="password" id="inputPassphrase2" class="form-control" placeholder="Re-type passphrase" required name="passphrase2" value="">
+  </div>
+  <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-ok"></i> Export</button>
+</form>
