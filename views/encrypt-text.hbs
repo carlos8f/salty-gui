@@ -9,7 +9,7 @@
 <div id="encrypt-text">
   <form method="post" action="">
     <div class="form-group">
-      <label for="recipient"><i class="glyphicon glyphicon-user"></i> Recipient</label>
+      <label for="recipient"><i class="glyphicon glyphicon-user"></i> Recipient:</label>
       <select name="to" class="form-control">
         <option value="{{pubkey.pubkey}}">(Self)</option>
         {{#each recipients}}
@@ -34,7 +34,7 @@
         {{#if output}}
         <hr>
         <div class="form-group">
-          <label for="input"><i class="glyphicon glyphicon-check"></i> Output:</label>
+          <label for="input"><span class="text-success"><i class="glyphicon glyphicon-check"></i> Output:</span></label>
           <textarea id="output" class="form-control" name="output" rows="8" readonly onclick="this.select()">{{output}}</textarea>
         </div>
         {{/if}}

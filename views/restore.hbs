@@ -1,12 +1,10 @@
-<h2>Restore from backup</h2>
-
-<form class="restore" action="" method="post" enctype="multipart/form-data">
+<form class="form-init" action="" method="post" enctype="multipart/form-data">
   {{> partials/messages}}
   <div class="form-group">
-    <label for="input">salty.pem:</label>
+    <label for="input"><i class="glyphicon glyphicon-floppy-disk"></i> salty.pem:</label>
     <input type="file" name="salty.pem">
-    <label for="inputPassword">Passphrase:</label>
-    <input type="password" id="inputPassword" class="form-control" placeholder="Passphrase" required name="passphrase">
+    <label for="inputPassword"><i class="glyphicon glyphicon-phone-alt"></i> Backup Passphrase:</label>
+    <input type="password" id="inputPassword" class="form-control" required name="passphrase">
     <button type="submit" class="btn btn-primary">Restore</button>
   </div>
 </form>

@@ -42,7 +42,6 @@ module.exports = function container (get, set) {
           }
           res.redirect('/ls')
         })
-        .stdout.pipe(process.stdout)
     })
     .add('/import', function (req, res, next) {
       if (!req.user) return res.redirect('/login')

@@ -11,11 +11,7 @@ module.exports = function container (get, set) {
         try {
           res.vars.pubkey = libSalty.pubkey.parse(stdout.trim())
         }
-        catch (e) {
-          res.flash('Invalid pubkey', 'danger')
-          req.logout()
-          return res.redirect('/login')
-        }
+        catch (e) {}
         next()
       })
       .stdout.on('data', function (chunk) {
