@@ -1,0 +1,49 @@
+<h2><i class="glyphicon glyphicon-lock"></i> Sign</h2>
+
+<ul class="nav nav-pills">
+  <li><a href="/encrypt/upload?to={{to}}"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
+  <li><a href="/encrypt/text?to={{to}}"><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
+  <li class="active"><a href="#"><i class="glyphicon glyphicon-open-file"></i> Local file/dir</a></li>
+</ul>
+
+<div id="encrypt-local">
+  <form method="post" action="">
+    <div class="form-group">
+      <label for="recipient"><i class="glyphicon glyphicon-user"></i> Recipient</label>
+      <select name="to" class="form-control">
+        <option value="">(Self)</option>
+        {{#each recipients}}
+        <option value="{{pubkey}}"{{#if selected}} selected{{/if}}>{{name}} &lt;{{email}}&gt;</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="sign" value="1">
+        <i class="glyphicon glyphicon-certificate"></i> Include signature
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="armor" value="1">
+        <i class="glyphicon glyphicon-text-background"></i> ASCII armor
+      </label>
+    </div>
+    <div class="checkbox">
+      <label>
+        <input type="checkbox" name="gist" value="1">
+        <i class="glyphicon glyphicon-cloud-upload"></i> Upload gist
+      </label>
+    </div>
+
+    <div id="actions" class="row">
+      <div class="col-lg-7">
+        <div class="form-group">
+          <label for="input"><i class="glyphicon glyphicon-file"></i> File/dir path:</label>
+          <input id="input" type="text" class="form-control input-sm" name="input" placeholder="/path/to/file" value="{{post.input}}">
+        </div>
+        <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Encrypt</button>
+      </div>
+    </div>
+  </form>
+</div>

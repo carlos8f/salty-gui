@@ -1,0 +1,25 @@
+<h2><i class="glyphicon glyphicon-refresh"></i> Edit/refresh</h2>
+
+<form>
+  <div class="form-group">
+    <label for="recipient"><i class="glyphicon glyphicon-user"></i> Your Name</label>
+    <input type="text" class="form-control" name="name" value="{{pubkey.name}}">
+  </div>
+  <div class="form-group">
+    <label for="recipient"><i class="glyphicon glyphicon-envelope"></i> Your Email</label>
+    <input type="text" class="form-control" name="email" value="{{pubkey.email}}">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="decrypt_regen" value="1">
+      <i class="glyphicon glyphicon-refresh"></i> Generate NEW decryption key
+    </label>
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox" name="sign_regen" value="1">
+      <i class="glyphicon glyphicon-refresh"></i> Generate NEW signing key
+    </label>
+  </div>
+  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Edit/refresh</button>
+</form>

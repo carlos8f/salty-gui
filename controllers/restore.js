@@ -22,7 +22,7 @@ module.exports = function container (get, set) {
             return next()
           }
           res.flash('Wallet restored!', 'success')
-          get('db.users').login(req.body.passphrase, req, res, next)
+          res.redirect('/login')
         })
     })
     .add('/restore', function (req, res, next) {
