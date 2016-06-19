@@ -9,9 +9,14 @@ module.exports = function container (get, set) {
       next()
     })
     .post('/init', function (req, res, next) {
-      var proc = salty('init')
-        .when('Creating wallet...\nYour name: ').respond(req.body.name + '\n')
-        .when('Your email address: ').respond(req.body.email + '\n')
+      var err = get('db.users').validate(req.body)
+      if (err) {
+        res.flash(err, 'danger')
+        return next()
+      }
+      var proc = salty({id: req.body.username})('init')
+        .when('Creating wallet...\nYour name: ').respond('\n')
+        .when('Your email address: ').respond('\n')
         .when('Create a passphrase: ').respond(req.body.passphrase + '\n')
         .when('Verify passphrase: ').respond(req.body.passphrase2 + '\n')
         .end(function (code) {

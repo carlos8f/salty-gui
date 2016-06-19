@@ -5,7 +5,7 @@ module.exports = function container (get, set) {
       login: function (username, passphrase, req, res, next) {
         // save passphrase in memory. never stored.
         var user = {
-          id: ,
+          id: usernameToUserId(username),
           passphrase: passphrase
         }
         this.save(user, function (err) {
