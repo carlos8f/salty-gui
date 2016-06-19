@@ -4,8 +4,11 @@ var libSalty = require('salty')
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
   return get('controller')()
-    .post('/import', function (req, res, next) {
+    .add('/import/*', '/import/*/*', '/import/*/*/*', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
+      next()
+    })
+    .post('/import', function (req, res, next) {
       var input = req.body.input
       if (input.indexOf('http') === 0) {
         request(input, function (err, resp, body) {
@@ -31,7 +34,6 @@ module.exports = function container (get, set) {
       }
     })
     .post('/import/complete', function (req, res, next) {
-      if (!req.user) return res.redirect('/login')
       salty('import', req.body.pubkey)
         .when('Enter name: ').respond(req.body.name + '\n')
         .when('Enter email: ').respond(req.body.email + '\n')
@@ -44,7 +46,6 @@ module.exports = function container (get, set) {
         })
     })
     .add('/import', function (req, res, next) {
-      if (!req.user) return res.redirect('/login')
       res.vars.on_ls = true
       res.render('import')
     })

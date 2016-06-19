@@ -9,10 +9,11 @@ module.exports = function container (get, set) {
   return get('controller')()
     .add('/login', function (req, res, next) {
       if (!res.vars.pubkey) return res.redirect('/init')
+      if (req.user) return res.redirect('/id')
       next()
     })
     .post('/login', function (req, res, next) {
-      if (req.user) return res.redirect('/')
+      if (req.user) return res.redirect('/id')
       var challenge = crypto.randomBytes(32)
       var tmpP = path.join(tmpDir, challenge.toString('hex'))
       fs.writeFileSync(tmpP, challenge)
@@ -40,16 +41,17 @@ module.exports = function container (get, set) {
               }
               catch (e) {}
               assert.deepEqual(buf, challenge)
-              get('db.users').login(req.body.passphrase, req, res, next)
+              get('db.users').login(req.body.username, req.body.passphrase, req, res, next)
             })
         })
     })
     .add('/login', function (req, res, next) {
+      if (req.user) return res.redirect('/id')
       res.render('login', res.vars, {layout: 'layout-signin'})
     })
     .get('/logout', function (req, res, next) {
       req.logout()
-      res.redirect('/')
+      res.redirect('/login')
     })
     .on('error', function (err, req, res) {
       res.json(500, {err: err.message})

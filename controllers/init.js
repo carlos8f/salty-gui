@@ -3,7 +3,8 @@ var crypto = require('crypto')
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
   return get('controller')()
-    .add('/init', function (req, res, next) {
+    .add('/init/*', '/init/*/*', '/init/*/*/*', function (req, res, next) {
+      if (req.user) return res.redirect('/id')
       if (res.vars.pubkey) return res.redirect('/login')
       next()
     })

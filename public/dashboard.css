@@ -167,6 +167,7 @@ table {
 
 h2 {
   margin-top: 0;
+  margin-bottom: 20px;
 }
 
 h3 {
@@ -179,4 +180,8 @@ h3 {
 
 label {
   margin-bottom: 10px;
+}
+
+.form-group.cbox {
+  margin-bottom: 0;
 }

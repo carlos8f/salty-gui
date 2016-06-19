@@ -3,5 +3,6 @@ module.exports = {
   _folder: 'utils',
 
   'loadRecipients': require('./loadRecipients'),
-  'salty': require('./salty')
+  'salty': require('./salty'),
+  'usernameToUserId': require('./usernameToUserId')
 }
