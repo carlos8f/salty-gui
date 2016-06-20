@@ -3,8 +3,9 @@ var libSalty = require('salty')
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
   return function handler (req, res, next) {
+    if (!req.user) return next()
     var chunks = []
-    salty('id')
+    salty(req.user)('id')
       .end(function (code) {
         if (code) return next()
         var stdout = Buffer.concat(chunks).toString('utf8')
