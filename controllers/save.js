@@ -13,7 +13,7 @@ module.exports = function container (get, set) {
         return next()
       }
       var tmpP = path.join(tmpDir, crypto.randomBytes(32).toString('hex') + '.pem')
-      salty('save', get('conf.salty').wallet, tmpP)
+      salty(req.user.id)('save', get('conf.salty').wallet, tmpP)
         .when('Create a passphrase: ').respond(req.body.passphrase + '\n')
         .when('Verify passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {

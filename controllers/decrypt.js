@@ -4,8 +4,7 @@ var fs = require('fs')
   , crypto = require('crypto')
 
 module.exports = function container (get, set) {
-  var loadRecipients = get('utils.loadRecipients')
-    , salty = get('utils.salty')
+  var salty = get('utils.salty')
   return get('controller')()
     .add('/decrypt/*', '/decrypt/*/*', '/decrypt/*/*/*', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
@@ -28,7 +27,7 @@ module.exports = function container (get, set) {
         outFile = req.files.file.path + '.out'
         args.push(outFile)
       }
-      var proc = salty(req.user).apply(null, args)
+      var proc = salty(req.user.id).apply(null, args)
         .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
         .end(function (code) {
           fs.unlinkSync(req.files.file.path)

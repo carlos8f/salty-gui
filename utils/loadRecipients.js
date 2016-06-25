@@ -2,9 +2,9 @@ var libSalty = require('salty')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
-  return function loadRecipients (cb) {
+  return function loadRecipients (username, cb) {
     var chunks = []
-    salty('ls')
+    salty(username)('ls')
       .end(function (code) {
         if (code) return cb(new Error('Wallet error'))
         var stdout = Buffer.concat(chunks).toString('utf8')

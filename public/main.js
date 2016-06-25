@@ -56,10 +56,6 @@ $('#encrypt-upload').each(function () {
       myDropzone.removeFile(file)
     })
   });
-
-  document.querySelector("#actions .cancel").onclick = function() {
-    myDropzone.removeAllFiles(true);
-  };
 })
 
 $('#decrypt-upload').each(function () {
@@ -107,10 +103,6 @@ $('#decrypt-upload').each(function () {
       myDropzone.removeFile(file)
     })
   });
-
-  document.querySelector("#actions .cancel").onclick = function() {
-    myDropzone.removeAllFiles(true);
-  };
 })
 
 $('#verify-upload').each(function () {
@@ -158,8 +150,4 @@ $('#verify-upload').each(function () {
       myDropzone.removeFile(file)
     })
   });
-
-  document.querySelector("#actions .cancel").onclick = function() {
-    myDropzone.removeAllFiles(true);
-  };
 })

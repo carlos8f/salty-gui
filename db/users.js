@@ -1,11 +1,20 @@
 module.exports = function container (get, set) {
-  var usernameToUserId = get('utils.usernameToUserId')
+  var validateUsername = get('utils.validateUsername')
   return get('db.createCollection')('users', {
+    save: function (obj, opts, cb) {
+      try {
+        validateUsername(obj.id)
+      }
+      catch (e) {
+        return cb(null, e)
+      }
+      cb(null, obj)
+    },
     methods: {
       login: function (username, passphrase, req, res, next) {
         // save passphrase in memory. never stored.
         var user = {
-          id: usernameToUserId(username),
+          id: username,
           passphrase: passphrase
         }
         this.save(user, function (err) {

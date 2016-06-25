@@ -1,4 +1,5 @@
 var fs = require('fs')
+  , validateUsername = require('../utils/validateUsername')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
@@ -10,7 +11,14 @@ module.exports = function container (get, set) {
         res.flash('Bad input', 'danger')
         return next()
       }
-      salty('restore', req.files['salty.pem'].path)
+      try {
+        validateUsername(req.body.username)
+      }
+      catch (e) {
+        res.flash(e.message, 'danger')
+        return next()
+      }
+      salty(req.body.username)('restore', req.files['salty.pem'].path)
         .when('Enter passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {
           try {

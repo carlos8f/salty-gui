@@ -4,7 +4,7 @@ module.exports = function container (get, set) {
     .get('/ls', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
       res.vars.on_ls = true
-      loadRecipients(function (err, recipients) {
+      loadRecipients(req.user.id, function (err, recipients) {
         if (err) return next(err)
         res.vars.recipients = recipients.length ? recipients : null
         res.render('ls')

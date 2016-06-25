@@ -4,5 +4,5 @@ module.exports = {
 
   'loadRecipients': require('./loadRecipients'),
   'salty': require('./salty'),
-  'usernameToUserId': require('./usernameToUserId')
+  'validateUsername': require('./validateUsername')
 }

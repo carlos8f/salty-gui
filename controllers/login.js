@@ -6,10 +6,9 @@ var fs = require('fs')
 
 module.exports = function container (get, set) {
   var salty = get('utils.salty')
-    , usernameToUserId = get('utils.usernameToUserId')
+    , validateUsername = get('utils.validateUsername')
   return get('controller')()
     .add('/login', function (req, res, next) {
-      if (!res.vars.pubkey) return res.redirect('/init')
       if (req.user) return res.redirect('/id')
       next()
     })
@@ -18,15 +17,25 @@ module.exports = function container (get, set) {
       var challenge = crypto.randomBytes(32)
       var tmpP = path.join(tmpDir, challenge.toString('hex'))
       fs.writeFileSync(tmpP, challenge)
-      salty({id: usernameToUserId(req.body.username)})('sign', tmpP)
+      try {
+        validateUsername(req.body.username)
+      }
+      catch (e) {
+        res.flash(e.message, 'danger')
+        return next()
+      }
+      salty(req.body.username)('sign', tmpP)
         .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {
+          try {
+            fs.unlinkSync(tmpP)
+            fs.unlinkSync(tmpP + '.salty-sig')
+          }
+          catch (e) {}
           if (code) {
             res.flash('Login failed', 'danger')
             return next()
           }
-          fs.unlinkSync(tmpP)
-          fs.unlinkSync(tmpP + '.salty-sig')
           get('db.users').login(req.body.username, req.body.passphrase, req, res, next)
         })
     })

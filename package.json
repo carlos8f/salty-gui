@@ -5,12 +5,14 @@
   "dependencies": {
     "bs58": "^3.0.0",
     "micro-request": "^666.0.5",
+    "mkdirp": "^0.5.1",
     "motley": "^2.2.0",
     "motley-auth": "^2.0.1",
     "motley-buffet": "^2.0.1",
     "motley-templ": "^2.0.2",
-    "salty": "^3.1.4",
+    "salty": "^4.0.3",
     "send": "^0.14.1",
-    "suppose": "git+https://github.com/carlos8f/node-suppose.git"
+    "suppose": "git+https://github.com/carlos8f/node-suppose.git",
+    "zxcvbn": "^4.3.0"
   }
 }

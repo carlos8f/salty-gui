@@ -5,7 +5,7 @@ module.exports = function container (get, set) {
   return function handler (req, res, next) {
     if (!req.user) return next()
     var chunks = []
-    salty(req.user)('id')
+    salty(req.user.id)('id')
       .end(function (code) {
         if (code) return next()
         var stdout = Buffer.concat(chunks).toString('utf8')

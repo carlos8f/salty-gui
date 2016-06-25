@@ -9,7 +9,7 @@ module.exports = function container (get, set) {
   return get('controller')()
     .add('/encrypt/*', '/encrypt/*/*', '/encrypt/*/*/*', function (req, res, next) {
       if (!req.user) return res.redirect('/login')
-      loadRecipients(function (err, recipients) {
+      loadRecipients(req.user.id, function (err, recipients) {
         if (err) return next(err)
         res.vars.recipients = recipients
         res.vars.on_encrypt = true
@@ -38,7 +38,7 @@ module.exports = function container (get, set) {
         outFile = req.files.file.path + '.salty'
         args.push(outFile)
       }
-      var e = salty(req.user).apply(null, args)
+      var e = salty(req.user.id).apply(null, args)
       if (req.body.sign) {
         e.when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
       }
@@ -94,7 +94,7 @@ module.exports = function container (get, set) {
         outFile = path.join(tmpDir, crypto.randomBytes(32).toString('hex'))
         args.push(outFile)
       }
-      var e = salty(req.user).apply(null, args)
+      var e = salty(req.user.id).apply(null, args)
       if (req.body.sign) {
         e.when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
       }
@@ -148,7 +148,7 @@ module.exports = function container (get, set) {
       fs.writeFile(inFile, req.body.input, {mode: parseInt('0600', 8)}, function (err) {
         if (err) return next(err)
         args.push(inFile)
-        var e = salty(req.user).apply(null, args)
+        var e = salty(req.user.id).apply(null, args)
         if (req.body.sign) {
           e.when('Wallet is encrypted.\nEnter passphrase: ').respond(req.user.passphrase + '\n')
         }

@@ -34,7 +34,7 @@ module.exports = function container (get, set) {
       }
     })
     .post('/import/complete', function (req, res, next) {
-      salty('import', req.body.pubkey)
+      salty(req.user.id)('import', req.body.pubkey)
         .when('Enter name: ').respond(req.body.name + '\n')
         .when('Enter email: ').respond(req.body.email + '\n')
         .end(function (code) {
