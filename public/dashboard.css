@@ -7,55 +7,19 @@
  */
 
 body {
-  background: #eee url(/bg.png) center top no-repeat;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-.sub-header {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-/*
- * Sidebar
- */
-.sidebar {
-  position: fixed;
-  top: 52px;
-  bottom: 0;
-  left: 0;
-  z-index: 1000;
-  display: block;
-  padding: 10px 20px 20px 20px;
-  white-space: nowrap;
-}
-
-/* Sidebar navigation */
-.nav-sidebar {
-  margin-right: -21px; /* 20px padding + 1px border */
+.navbar {
   margin-bottom: 20px;
-  margin-left: -20px;
-}
-.nav-sidebar > li > a {
-  padding-right: 20px;
-  padding-left: 20px;
-}
-.nav-sidebar > .active > a,
-.nav-sidebar > .active > a:hover,
-.nav-sidebar > .active > a:focus {
-  color: #fff;
-  background-color: #428bca;
 }
 
-
-/*
- * Main content
- */
-
-.main {
-  padding: 0 20px 0 20px;
-}
-.main .page-header {
-  margin-top: 0;
+/* Customize container */
+@media (min-width: 768px) {
+  .container {
+    max-width: 730px;
+  }
 }
 
 /* Mimic table appearance */
@@ -111,12 +75,8 @@ div.table .file-row {
   display: inline-block;
 }
 
-.main .nav {
-  margin-bottom: 20px;
-}
-
 input.form-control, textarea.form-control, select.form-control, input.form-control[readonly], textarea.form-control[readonly] {
-  background-color: rgba(255,255,255,0);
+  background-color: rgba(255,255,255,1);
 }
 
 textarea {
@@ -124,45 +84,15 @@ textarea {
 }
 
 table {
-  background-color: rgba(255, 255, 255,0.25);
+  background-color: rgba(255, 255, 255,1);
 }
 
 .salty-logo {
   display: inline-block;
   width: 32px;
   height: 32px;
-  background: black url(/salt-shaker.png) center no-repeat;
-  margin-bottom: -5px;
-  margin-right: -5px;
-}
-
-.navbar {
-  border-radius: 0;
-}
-
-.navbar-inverse {
-  background: black;
-  position: relative;
-  height: 70px;
-  color: #888;
-  font-size: 0.9em;
-  padding-top: 5px;
-}
-
-.navbar-inverse .navbar-brand {
-  float: none;
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 20px;
-  color: white;
-  font-size: 26px;
-  line-height: 1;
-  letter-spacing: 0.05em;
-}
-
-.navbar li {
-  margin-top: 5px;
+  background: url(/salt-shaker-inverse.png) center no-repeat;
+  margin-top: -5px;
 }
 
 h2 {
