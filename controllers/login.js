@@ -10,6 +10,7 @@ module.exports = function container (get, set) {
   return get('controller')()
     .add('/login', function (req, res, next) {
       if (req.user) return res.redirect('/id')
+      if (!res.vars.isSetup) return res.redirect('/init')
       next()
     })
     .post('/login', function (req, res, next) {

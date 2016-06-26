@@ -10,5 +10,5 @@
     <button class="btn btn-success btn-block" type="submit"><i class="glyphicon glyphicon-ok"></i> Log in</button>
   </div>
 
-  <p class="pull-right"><small><a href="/init"><i class="glyphicon glyphicon-briefcase"></i> Create a wallet</a></small></p>
+  {{#unless isSetup}}<p class="pull-right"><small><a href="/init"><i class="glyphicon glyphicon-plus"></i> Create a wallet</a></small></p>{{/unless}}
 </form>
