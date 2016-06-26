@@ -177,6 +177,7 @@ module.exports = function container (get, set) {
       res.redirect('/encrypt/upload' + (req.query.to ? '?to=' + req.query.to : ''))
     })
     .on('error', function (err, req, res) {
-      res.send(500, err.message)
+      res.flash(err.message, 'danger')
+      res.redirect('/')
     })
 }

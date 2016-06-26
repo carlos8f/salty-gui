@@ -1,15 +1,17 @@
 <form class="form-init" action="" method="post" enctype="multipart/form-data">
-  <h2 class="form-init-heading"><i class="salty-logo"></i> {{title}}</h2>
-  {{> partials/messages}}
-  <div class="form-group">
-    <label for="input"><i class="glyphicon glyphicon-floppy-disk"></i> salty.pem:</label>
-    <input type="file" name="salty.pem">
-    <label for="inputUsername"><i class="glyphicon glyphicon-user"></i> Username:</label>
-    <input type="text" id="inputUsername" class="form-control" required name="username" value="{{post.username}}">
-    <label for="inputPassword"><i class="glyphicon glyphicon-phone-alt"></i> Backup Passphrase:</label>
-    <input type="password" id="inputPassword" class="form-control" required name="passphrase">
-    <button type="submit" class="btn btn-success btn-block"><i class="glyphicon glyphicon-ok"></i> Restore</button>
-
-    <p class="pull-right"><small><a href="/">&larr; back</a></small></p>
+  <div class="well">
+    <h2 class="form-init-heading"><i class="salty-logo"></i> {{title}}</h2>
+    <h3>Restore wallet</h3>
+    {{> partials/messages}}
+    <div class="form-group">
+      <label for="input"><i class="glyphicon glyphicon-floppy-disk"></i> Backup file (salty.pem):</label>
+      <input type="file" name="salty.pem">
+      <label for="inputUsername"><i class="glyphicon glyphicon-user"></i> Choose Username:</label>
+      <input type="text" id="inputUsername" class="form-control" required name="username" value="{{post.username}}">
+      <label for="inputPassword"><i class="glyphicon glyphicon-phone-alt"></i> Backup Passphrase:</label>
+      <input type="password" id="inputPassword" class="form-control" required name="passphrase">
+      <button type="submit" class="btn btn-success btn-block"><i class="glyphicon glyphicon-ok"></i> Restore</button>
+    </div>
   </div>
+  <p class="pull-right"><small><a href="/">&larr; back</a></small></p>
 </form>

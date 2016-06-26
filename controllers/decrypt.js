@@ -163,6 +163,7 @@ module.exports = function container (get, set) {
       res.redirect('/decrypt/upload')
     })
     .on('error', function (err, req, res) {
-      res.send(500, err.message)
+      res.flash(err.message, 'danger')
+      res.redirect('/')
     })
 }

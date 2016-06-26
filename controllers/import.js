@@ -50,6 +50,7 @@ module.exports = function container (get, set) {
       res.render('import')
     })
     .on('error', function (err, req, res) {
-      res.json(500, {err: err.message})
+      res.flash(err.message, 'danger')
+      res.redirect('/')
     })
 }

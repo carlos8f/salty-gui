@@ -8,7 +8,7 @@ module.exports = function container (get, set) {
   return get('controller')()
     .add('/init', '/init/*', '/init/*/*', function (req, res, next) {
       if (req.user) return res.redirect('/id')
-      if (res.vars.isSetup) return res.redirect('/login')
+      if (res.vars.isSetup && !req.session.can_init) return res.redirect('/login')
       next()
     })
     .post('/init', function (req, res, next) {
@@ -59,6 +59,7 @@ module.exports = function container (get, set) {
       res.render('init', res.vars, {layout: 'layout-signin'})
     })
     .on('error', function (err, req, res) {
-      res.json(500, {err: err.message})
+      res.flash(err.message, 'danger')
+      res.redirect('/')
     })
 }

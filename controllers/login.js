@@ -14,9 +14,6 @@ module.exports = function container (get, set) {
     })
     .post('/login', function (req, res, next) {
       if (req.user) return res.redirect('/id')
-      var challenge = crypto.randomBytes(32)
-      var tmpP = path.join(tmpDir, challenge.toString('hex'))
-      fs.writeFileSync(tmpP, challenge)
       try {
         validateUsername(req.body.username)
       }
@@ -24,12 +21,23 @@ module.exports = function container (get, set) {
         res.flash(e.message, 'danger')
         return next()
       }
-      salty(req.body.username)('sign', tmpP)
+      var p = path.join(get('conf.salty').wallet, 'users', req.body.username)
+      try {
+        fs.statSync(p)
+      }
+      catch (e) {
+        res.flash('Login failed', 'danger')
+        return next()
+      }
+      var challenge = crypto.randomBytes(32)
+      var tmpP = path.join(tmpDir, challenge.toString('hex'))
+      fs.writeFileSync(tmpP, challenge)
+      
+      salty(req.body.username)('sign', '-a', tmpP)
         .when('Wallet is encrypted.\nEnter passphrase: ').respond(req.body.passphrase + '\n')
         .end(function (code) {
           try {
             fs.unlinkSync(tmpP)
-            fs.unlinkSync(tmpP + '.salty-sig')
           }
           catch (e) {}
           if (code) {
@@ -48,6 +56,7 @@ module.exports = function container (get, set) {
       res.redirect('/login')
     })
     .on('error', function (err, req, res) {
-      res.json(500, {err: err.message})
+      res.flash(err.message, 'danger')
+      res.redirect('/')
     })
 }

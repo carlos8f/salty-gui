@@ -38,4 +38,8 @@ module.exports = function container (get, set) {
       if (res.vars.pubkey) return res.redirect('/login')
       res.render('restore', res.vars, {layout: 'layout-signin'})
     })
+    .on('error', function (err, req, res) {
+      res.flash(err.message, 'danger')
+      res.redirect('/')
+    })
 }

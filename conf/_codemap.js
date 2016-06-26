@@ -11,7 +11,7 @@ module.exports = {
   '@site.title': 'Salty',
 
   'salty': {
-    wallet: path.join(process.env.HOME, '.salty'),
+    wallet: path.join(process.env.HOME, '.salty-gui'),
     bin: path.resolve(__dirname, '..', 'node_modules', '.bin', 'salty')
   },
 

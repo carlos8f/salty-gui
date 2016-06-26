@@ -35,4 +35,8 @@ module.exports = function container (get, set) {
       res.vars.on_id = true
       res.render('save')
     })
+    .on('error', function (err, req, res) {
+      res.flash(err.message, 'danger')
+      res.redirect('/')
+    })
 }

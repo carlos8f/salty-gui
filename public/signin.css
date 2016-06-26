@@ -1,7 +1,26 @@
+html {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background: white;
+  background: #ddd;
+  -webkit-box-shadow: inset 0 0 200px rgba(0,0,0,.3);
+  box-shadow: inset 0 0 200px rgba(0,0,0,.3);
+  height: 100%;
+  display: table;
+  width: 100%;
+}
+
+h3 {
+  text-align: center;
+}
+
+a {
+  color: black;
 }
 
 .form-signin {
@@ -84,6 +103,10 @@ body {
   margin-bottom: 20px;
 }
 
+.alert {
+  margin-bottom: 0;
+}
+
 .form-init button {
   margin-bottom: 10px;
 }
@@ -93,6 +116,7 @@ label, button {
 
 input.form-control {
   background-color: rgba(255,255,255,1);
+  border: 1px solid #888;
 }
 
 .salty-logo {
@@ -103,4 +127,18 @@ input.form-control {
   margin-bottom: -5px;
   margin-right: -5px;
   margin-left: -20px;
+}
+
+.well {
+  border: 1px solid #888;
+  background-color: #fff;
+  margin-bottom: 10px;
+}
+
+.btn-default {
+  border: 1px solid #888;
+}
+
+.btn-success {
+  border: 1px solid #185018;
 }
