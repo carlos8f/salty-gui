@@ -102,8 +102,13 @@ input.form-control, textarea.form-control, select.form-control, input.form-contr
   margin-bottom: 10px;
 }
 
-textarea {
+textarea.form-control {
   font-family: monospace;
+  color: black;
+}
+
+textarea.form-control[readonly] {
+  background: url(/salty-bg.png) repeat;
 }
 
 .salty-logo {

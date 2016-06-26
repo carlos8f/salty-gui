@@ -152,14 +152,13 @@ $('#verify-upload').each(function () {
   });
 })
 
-$('#copyButton').tooltip({
+$('.copyButton').tooltip({
   placement: 'bottom',
   title: 'Copied!',
   trigger: 'click'
 })
 
-$('#copyButton').click(function (e) {
-  
+$('.copyButton').click(function (e) {
   var inp = $('#pubkey').get(0)
   if (inp && inp.select) {
     inp.select();

@@ -12,4 +12,6 @@
 
 <hr>
 
-<textarea class="form-control" rows="3" onclick="this.select()" readonly>{{pubkey}}</textarea>
+<textarea id="pubkey" class="form-control" rows="3" onclick="this.select()" readonly>{{pubkey}}</textarea>
+
+<p><button class="copyButton btn btn-success" data-copytarget="#pubkey"><i class="glyphicon glyphicon-copy"></i> Copy</button></p>
