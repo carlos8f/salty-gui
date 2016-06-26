@@ -3,6 +3,7 @@ module.exports = function container (get, set) {
     res.vars.title = get('conf.site.title')
     res.vars.post = req.body
     res.vars.user = req.user
+    res.vars.saltyVersion = get('conf.saltyVersion')
     next()
   }
 }

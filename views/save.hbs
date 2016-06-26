@@ -1,13 +1,32 @@
-<h2><i class="glyphicon glyphicon-briefcase"></i> Export Wallet</h2>
+<p class="pull-right">
+  <a class="btn btn-default" href="/id"><i class="glyphicon glyphicon-user"></i> ID</a>
+  <a class="btn btn-default" href="/id/refresh"><i class="glyphicon glyphicon-refresh"></i> Refresh</a>
+  <a class="btn btn-primary" href="/save"><i class="glyphicon glyphicon-briefcase"></i> Export</a>
+</p>
+
+<h2>Export</h2>
+
+<p>Here you can download an encrypted, ASCII-armored backup of your wallet.
 
 <form action="" method="post">
   <div class="form-group">
-    <label for="inputPassphrase"><i class="glyphicon glyphicon-phone-alt"></i> Create passphrase:</label>
+    <label for="inputPassphrase"><i class="glyphicon glyphicon-phone-alt"></i> Create backup passphrase:</label>
     <input type="password" id="inputPassphrase" class="form-control" required name="passphrase" value="">
   </div>
   <div class="form-group">
-    <label for="inputPassphrase2"><i class="glyphicon glyphicon-repeat"></i> Confirm passphrase:</label>
+    <label for="inputPassphrase2"><i class="glyphicon glyphicon-repeat"></i> Confirm backup passphrase:</label>
     <input type="password" id="inputPassphrase2" class="form-control" required name="passphrase2" value="">
   </div>
-  <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-ok"></i> Export</button>
+  <div class="well">
+    <h3>Optional: Destroy after export</h3>
+    <p>Log out and destroy your wallet directory, recoverable using your backup.</p>
+    <div class="checkbox">
+      <p class="text-danger"><i class="glyphicon glyphicon-exclamation-sign"></i> ARE YOU SURE? If you lose your backup file, your identity will be lost FOREVER.</p>
+      <label>
+        <input type="checkbox" name="decrypt_regen" value="1">
+        Yes, I want to DESTROY my wallet directory
+      </label>
+    </div>
+  </div>
+  <button class="btn btn-success" type="submit"><i class="glyphicon glyphicon-download-alt"></i> Export</button>
 </form>

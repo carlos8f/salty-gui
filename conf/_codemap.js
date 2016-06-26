@@ -15,6 +15,8 @@ module.exports = {
     bin: path.resolve(__dirname, '..', 'node_modules', '.bin', 'salty')
   },
 
+  'saltyVersion': null,
+
   // middleware overrides
   'middleware.session{}': {
     cookie: {

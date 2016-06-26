@@ -5,12 +5,12 @@ module.exports = function container (get, set) {
       if (!req.user) return res.redirect('/login')
       next()
     })
-    .post('/id/edit', function (req, res, next) {
+    .post('/id/refresh', function (req, res, next) {
       
     })
-    .add('/id/edit', function (req, res, next) {
+    .add('/id/refresh', function (req, res, next) {
       res.vars.on_id = true
-      res.render('id-edit')
+      res.render('id-refresh')
     })
     .get('/id', function (req, res, next) {
       res.vars.on_id = true
