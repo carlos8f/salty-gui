@@ -172,3 +172,7 @@ input.form-control {
   background-color: #337ab7;
   border-color: #2e6da4;
 }
+
+.footer {
+  text-align: right;
+}

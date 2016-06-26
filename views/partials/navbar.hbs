@@ -11,13 +11,30 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/id"><i class="glyphicon glyphicon-user"></i> Wallet</a></li>
-        <li><a href="/encrypt"><i class="glyphicon glyphicon-lock"></i> Encryption</a></li>
-        <li><a href="/sign"><i class="glyphicon glyphicon-pencil"></i> Signatures</a></li>
+        <li class="active"><a href="/id"><i class="glyphicon glyphicon-user"></i></a></li>
+        <li><a href="/encrypt"><i class="glyphicon glyphicon-lock"></i></a></li>
+        <li><a href="/sign"><i class="glyphicon glyphicon-pencil"></i></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="/logout"><i class="glyphicon glyphicon-off"></i> Logout</a></li>
+        <li><a href="#" data-toggle="modal" data-target="#pubkeyModal"><code>{{pubkeyFingerprint}}</code></a></li>
+        <li><a href="/logout"><i class="glyphicon glyphicon-off"></i></a></li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container-fluid -->
 </nav>
+
+<div class="modal fade" id="pubkeyModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Here is your public Salty-ID.</h4>
+      </div>
+      <div class="modal-body">
+        <textarea id="pubkey" class="form-control" rows="3" onclick="this.select()" readonly>{{pubkey}}</textarea>
+        <p class="pull-right"><button id="copyButton" class="btn btn-success" data-copytarget="#pubkey"><i class="glyphicon glyphicon-copy"></i> Copy</button></p>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

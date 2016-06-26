@@ -151,3 +151,24 @@ $('#verify-upload').each(function () {
     })
   });
 })
+
+$('#copyButton').tooltip({
+  placement: 'bottom',
+  title: 'Copied!',
+  trigger: 'click'
+})
+
+$('#copyButton').click(function (e) {
+  
+  var inp = $('#pubkey').get(0)
+  if (inp && inp.select) {
+    inp.select();
+    try {
+      document.execCommand('copy');
+      inp.blur();
+    }
+    catch (err) {
+      alert('please press Ctrl/Cmd+C to copy');
+    }
+  }
+})
