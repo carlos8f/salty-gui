@@ -1,18 +1,22 @@
-<h2><i class="glyphicon glyphicon-eye-open"></i> Decrypt</h2>
+<p class="pull-right">
+  <a class="btn btn-default" href="/encrypt/text?to={{to}}"><i class="glyphicon glyphicon-lock"></i> Encrypt</a> <a class="btn btn-primary" href="/decrypt"><i class="glyphicon glyphicon-eye-open"></i> Decrypt</a><br><a class="btn btn-primary" href="/decrypt/text?to={{to}}"><i class="glyphicon glyphicon-copy"></i> Copy/paste</a> <a class="btn btn-default" href="/decrypt/upload"><i class="glyphicon glyphicon-upload"></i> Upload</a>
+</p>
 
-<ul class="nav nav-pills">
-  <li><a href="/decrypt/upload"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
-  <li class="active"><a href=""><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
-  <li><a href="/decrypt/local"><i class="glyphicon glyphicon-open-file"></i> Local file/dir or gist URL</a></li>
-</ul>
+<h2>Decrypt</h2>
+
+<h3>Here you can paste an ASCII-armored message to decrypt.</h3>
+
+<p>You will receive a decrypted result text.</p>
+
+<hr>
 
 <div id="encrypt-text">
   <form method="post" action="">
     <div id="actions" class="row">
       <div class="col-lg-9">
         <div class="form-group">
-          <label for="input"><i class="glyphicon glyphicon-pencil"></i> Paste ASCII Armor:</label>
-          <textarea id="input" class="form-control" name="input" rows="8">{{post.input}}</textarea>
+          <label for="input"><i class="glyphicon glyphicon-text-background"></i> Paste ASCII Armor:</label>
+          <textarea id="input" class="form-control" name="input" rows="4">{{post.input}}</textarea>
         </div>
         <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Decrypt</button>
         {{#if output}}
@@ -20,7 +24,7 @@
         {{> partials/headers}}
         <div class="form-group">
           <label for="output"><i class="glyphicon glyphicon-check"></i> Output:</label>
-          <textarea id="output" class="form-control" name="output" rows="8" readonly onclick="this.select()">{{output}}</textarea>
+          <textarea id="output" class="form-control" name="output" rows="4" readonly onclick="this.select()">{{output}}</textarea>
         </div>
         {{/if}}
       </div>

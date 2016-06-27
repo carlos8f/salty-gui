@@ -1,10 +1,14 @@
-<h2><i class="glyphicon glyphicon-lock"></i> Encrypt</h2>
+<p class="pull-right">
+  <a class="btn btn-primary" href="/encrypt?to={{to}}"><i class="glyphicon glyphicon-lock"></i> Encrypt</a> <a class="btn btn-default" href="/decrypt"><i class="glyphicon glyphicon-eye-open"></i> Decrypt</a><br><a class="btn btn-primary" href="/encrypt/text?to={{to}}"><i class="glyphicon glyphicon-copy"></i> Copy/paste</a> <a class="btn btn-default" href="/encrypt/upload"><i class="glyphicon glyphicon-upload"></i> Upload</a>
+</p>
 
-<ul class="nav nav-pills">
-  <li><a href="/encrypt/upload?to={{to}}"><i class="glyphicon glyphicon-upload"></i> Upload files</a></li>
-  <li class="active"><a href=""><i class="glyphicon glyphicon-copy"></i> Copy/paste</a></li>
-  <li><a href="/encrypt/local?to={{to}}"><i class="glyphicon glyphicon-open-file"></i> Local file/dir</a></li>
-</ul>
+<h2>Encrypt</h2>
+
+<h3>Here you can paste or enter text to encrypt.</h3>
+
+<p>You will receive an ASCII-armored encrypted result to copy/paste.</p>
+
+<hr>
 
 <div id="encrypt-text">
   <form method="post" action="">
@@ -20,14 +24,14 @@
     <div class="checkbox">
       <label>
         <input type="checkbox" name="sign" value="1"{{#if post.sign}} checked{{/if}}>
-        <i class="glyphicon glyphicon-certificate"></i> Include signature
+        <i class="glyphicon glyphicon-pencil"></i> Include signature
       </label>
     </div>
 
     <div id="actions" class="row">
       <div class="col-lg-9">
         <div class="form-group">
-          <label for="input"><i class="glyphicon glyphicon-pencil"></i> Enter text:</label>
+          <label for="input"><i class="glyphicon glyphicon-envelope"></i> Enter text:</label>
           <textarea id="input" class="form-control" name="input" rows="8">{{post.input}}</textarea>
         </div>
         <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon-ok"></i> Encrypt</button>

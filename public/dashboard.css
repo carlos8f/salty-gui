@@ -164,6 +164,15 @@ input.form-control {
   margin-top: 0;
 }
 
+.well .pull-right {
+  text-align: right;
+}
+
+.well .pull-right a {
+  display: inline-block;
+  margin: 5px 2.5px;
+}
+
 .btn-default {
   border: 1px solid #888;
 }

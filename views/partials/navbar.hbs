@@ -11,9 +11,9 @@
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/id"><i class="glyphicon glyphicon-user"></i></a></li>
-        <li><a href="/encrypt"><i class="glyphicon glyphicon-lock"></i></a></li>
-        <li><a href="/sign"><i class="glyphicon glyphicon-pencil"></i></a></li>
+        <li{{#if on_id}} class="active"{{/if}}><a href="/id"><i class="glyphicon glyphicon-user"></i></a></li>
+        <li{{#if on_encryption}} class="active"{{/if}}><a href="/encrypt"><i class="glyphicon glyphicon-lock"></i></a></li>
+        <li{{#if on_signatures}} class="active"{{/if}}><a href="/sign"><i class="glyphicon glyphicon-pencil"></i></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#" data-toggle="modal" data-target="#pubkeyModal"><code>{{pubkeyFingerprint}}</code></a></li>
